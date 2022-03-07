@@ -2,11 +2,11 @@
 
 import os
 import sys
-import ConfigParser
+import configparser
 
 
 #Setting reporting.conf
-reporting_cfg = ConfigParser.ConfigParser()
+reporting_cfg = configparser.ConfigParser()
 reporting_cfg.read("/opt/CAPEv2/conf/reporting.conf")
 with open("/opt/CAPEv2/conf/reporting.conf", 'w') as cfile:
     if os.environ.get('ES_HOST'):
@@ -25,7 +25,7 @@ with open("/opt/CAPEv2/conf/reporting.conf", 'w') as cfile:
     reporting_cfg.write(cfile)
 
 #Setting cuckoo.conf
-cuckoo_cfg = ConfigParser.ConfigParser()
+cuckoo_cfg = configparser.ConfigParser()
 cuckoo_cfg.read("/opt/CAPEv2/conf/cuckoo.conf")
 with open("/opt/CAPEv2/conf/cuckoo.conf", 'w') as cfile:
     if os.environ.get('RESULTSERVER_HOST'):

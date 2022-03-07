@@ -265,6 +265,8 @@ COPY conf /opt/CAPEv2/conf
 COPY update_conf.py /update_conf.py
 COPY docker-entrypoint.sh /entrypoint.sh
 
+RUN pip install configparser
+
 RUN mkdir -p /var/log/supervisor
 COPY service_configs/cape.supervisor.conf /etc/supervisor/conf.d/supervisord.conf
 
