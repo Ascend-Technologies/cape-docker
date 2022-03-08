@@ -207,6 +207,10 @@ RUN chown root:root /usr/share/clamav-unofficial-sigs/conf.d/00-clamav-unofficia
     chmod 644 /usr/share/clamav-unofficial-sigs/conf.d/00-clamav-unofficial-sigs.conf && \
     usermod -a -G ${APP_USER} clamav 
 RUN freshclam 
+RUN touch /var/log/clamav/clamav.log && chmod 777  /var/log/clamav/clamav.log &&\
+    touch /var/log/clamav/freshclam.log && chmod 777  /var/log/clamav/clamav.log && \
+    mkdir /var/run/clamav && chmod -R 777 /var/run/clamav
+
 #RUN /usr/sbin/clamav-unofficial-sigs
 
 ########################################################
