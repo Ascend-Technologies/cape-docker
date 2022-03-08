@@ -29,12 +29,12 @@ services:
         restart: always
         environment:
           - MONGO_HOST=mongo
-          - RESULTSERVER_HOST='0.0.0.0'
-          - RESULTSERVER_PORT="2042"
-          - DATABASE_CONNECTION="postgresql://cape:s3Cur1Ty@postgres:5432/cape"
-          - MACHINERY=kvm
+          - RESULTSERVER_HOST=0.0.0.0
+          - RESULTSERVER_PORT=2042
+          - DATABASE_CONNECTION=postgresql://cape:s3Cur1Ty@postgres:5432/cape
+          - MACHINERY=proxmox
         ports:
-          - '8088:80'
+          - '14281:80'
         volumes: 
           - ./conf:/opt/CAPEv2/conf
         depends_on:

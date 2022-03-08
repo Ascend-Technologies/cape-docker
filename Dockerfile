@@ -247,12 +247,13 @@ RUN set -x && cd /opt/CAPEv2/data/ && \
 
 RUN pip3 install git+https://github.com/DissectMalware/XLMMacroDeobfuscator.git
 RUN pip3 install networkx>=2.1 graphviz>=0.8.4 pydot>=1.2.4
+RUN pip3 install https://github.com/CAPESandbox/peepdf/archive/20eda78d7d77fc5b3b652ffc2d8a5b0af796e3dd.zip#egg=peepdf==0.4.2
+RUN apt install -y libpq-dev && pip3 install psycopg2 && pip3 install proxmoxer -U
 
 ########################################################
 # Install NGINX
 ########################################################
 RUN apt install nginx -y
-RUN ls /etc/nginx -l
 RUN rm /etc/nginx/sites-enabled/default /etc/nginx/sites-available/default
 COPY service_configs/nginx.conf /etc/nginx/conf.d/default.conf
 RUN nginx -t
@@ -267,6 +268,7 @@ COPY docker-entrypoint.sh /entrypoint.sh
 
 RUN pip install configparser
 
+RUN apt install -y supervisor
 RUN mkdir -p /var/log/supervisor
 COPY service_configs/cape.supervisor.conf /etc/supervisor/conf.d/supervisord.conf
 
